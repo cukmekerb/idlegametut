@@ -1,0 +1,51 @@
+<!doctype html>
+
+<head>
+    <title>Generic Clicker</title>
+    <script>
+        var clicker = {
+            generics: 0,
+            upgrades: {
+                generic_machine: {
+                    amount: 0,
+                    cost: 10,
+                    gps: 1,
+                    name:"generic machine"
+                },
+                generic_factory: {
+                    amount: 0,
+                    cost: 20,
+                    gps: 10,
+                    name:"generic factory"
+                }
+            }
+        }
+        function thing_clicked(thing) {
+            clicker.upgrades[thing].amount++;
+            update_upgrades();
+        }
+        function updatecount() {
+            update_upgrades();
+            setInterval(() => {
+                for (i in clicker.upgrades) {
+                    clicker.generics+=clicker.upgrades[i].amount*clicker.upgrades[i].gps/20;
+                }
+                document.querySelector("#generics").innerHTML = "you have " + String(clicker.generics).split(".")[0] + " generics";
+            }, 50);
+        }
+        function update_upgrades(){
+            document.querySelector("#upgrades").innerHTML=""
+                for (i in clicker.upgrades) {
+                    document.querySelector("#upgrades").innerHTML += `<br><button onclick="thing_clicked('${i}')">${clicker.upgrades[i].name}</button> you have ${clicker.upgrades[i].amount}`
+                }
+        }
+    </script>
+</head>
+
+<body onload="updatecount()">
+    <h1 id="generics">you have 0 generics</h1>
+    <button onclick="clicker.generics++">Get 1 generic</button>
+    <div id="upgrades">
+
+    </div>
+</body>

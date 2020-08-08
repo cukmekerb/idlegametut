@@ -1,0 +1,15 @@
+<!doctype html>
+<head>
+    <title>Generic Clicker</title>
+    <script>
+        var generics = 0;
+        function generic_clicked(){
+            generics++;
+            document.querySelector("#generics").innerHTML="you have "+generics+" generics"
+        }
+    </script>
+</head>
+<body>
+    <h1 id="generics">you have 0 generics</h1>
+    <button onclick="generic_clicked()">Get 1 generic</button>
+</body>
